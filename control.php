@@ -271,6 +271,20 @@
 	   		}
 		       a.send();
 		 });
+		 $('#i').click(function(){     // Chỗ off là bạn thay cái id mà bạn đặt cho button
+	   		var a = new XMLHttpRequest();
+		 	a.open("GET", "volume.php?q="+"volumeDown",true);   // thay cái tatden.php thành file thực thi của bạn
+		        a.onreadystatechange=function(){
+			    if(a.readyState==4){
+				     if(a.status == 200){
+				     }
+				     else{
+					     alert("Error - I don't know but there is an error 404 maybe :)")
+				     }
+	    		    }
+	   		}
+		       a.send();
+		 });
 	});
 	</script>
 
@@ -309,6 +323,8 @@
 	</div>
 
 	<script>
+	var vidUrls = [];
+
 
 	function keyWordsearch(){
 		console.log("keyWordsearch");
@@ -318,6 +334,28 @@
 		});
 		
 	}
+
+	function buttonPlay(id){
+		console.log("buttonPlay " + id);
+		console.log(vidUrls[id])
+
+		var a = new XMLHttpRequest();
+		 	a.open("GET", "openFireFox.php?q="+id,true);   // thay cái tatden.php thành file thực thi của bạn
+		 	// a.open("GET", "volume.php?q="+"volumeMute",true);   // thay cái tatden.php thành file thực thi của bạn
+		        a.onreadystatechange=function(){
+			    if(a.readyState==4){
+				     if(a.status == 200){
+						console.log("status == 200")
+				     }
+				     else{
+						 console.log("Error")
+					     alert("Error - I don't know but there is an error 404 maybe :)")
+				     }
+	    		    }
+	   		}
+		       a.send();
+	}
+
 
 	function makeRequest(){
 		console.log("makeRequest");
@@ -330,8 +368,11 @@
 		
 		request.execute(function(response)  {                                                                              
 				$('#results').empty()
+				vidUrl = []
 				var srchItems = response.result.items;
+				var i = 0
 				$.each(srchItems, function(index, item){
+
 						itemKind = item.id.kind
 						if(typeof itemKind == "string" && itemKind.indexOf('video') > -1){//check if the result is a channel or a video
 							vidUrl = item.id.videoId
@@ -339,10 +380,14 @@
 							vidTitle = item.snippet.title;
 							vidThumburl =  item.snippet.thumbnails.default.url;
 
-							vidThumbimg = '<pre><img id="thumb" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"><button type="button" id="123">Play this</button></pre>';
-
+							vidThumbimg = '<pre><img id="thumb" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"><button type="button" onclick="buttonPlay('+ i +')" id="'+ i +'">Play this</button></pre>';
+							
+							
+							vidUrls.push(vidUrl);
 							$('#results').append('<pre>' + vidTitle + vidThumbimg + '</pre>');
+							// console.log(typeof $('#vidUrls'))
 						}
+						i = i + 1
 				})
 	})  
 	}

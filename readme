@@ -1,0 +1,14 @@
+the directory is .var/wwww/html
+web run with apache
+
+the main control board is the file the control.php
+use ifconfig to get the ipaddress of the raspebry
+the local server is automatically run
+type the ip address on the Chrome/firefox
+
+click on control.php
+the playlist1,2,3 linked with the youtube channel
+
+//Control
+in order to see the updated volume, refresh/F5 your webpage
+

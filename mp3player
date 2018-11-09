@@ -1,0 +1,37 @@
+#!/bin/bash
+   sudo pkill -x mpg321
+if [ "$1" == "piano" ]
+then
+   sudo mpg321 -q piano.mp3
+elif [ "$1" == "mozart" ]
+then
+   sudo mpg321 -q mozart.mp3
+elif [ "$1" == "yiruma" ]
+then
+   sudo mpg321 -q Yiruma.mp3
+elif [ "$1" == "beethoven" ]
+then
+   sudo mpg321 -q beethoven.mp3
+elif [ "$1" == "wakeup" ]
+then
+   sudo mpg321 -q wakeup.mp3
+elif [ "$1" == "sleep" ]
+then
+   sudo mpg321 -q sleep.mp3
+elif [ "$1" == "bath" ]
+then
+   sudo mpg321 -q bath.mp3
+else 
+   sudo pkill -x mpg321
+   sudo pkill -x mpv
+   sudo pkill -x vlc
+   sudo pkill -x mpsyt
+   sudo pkill -x mpsyt
+   sudo killall -x mpsyt
+   sudo killall -x mpsyt
+   sudo killall -x mpsyt
+   sudo pkill -x mpsyt
+   sudo pkill -x mpsyt
+
+fi
+

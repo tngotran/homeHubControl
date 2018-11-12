@@ -12,3 +12,4 @@ the playlist1,2,3 linked with the youtube channel
 //Control
 in order to see the updated volume, refresh/F5 your webpage
 
+ pip3 install youtube-dl -U fix the error of: Signature extraction failed:

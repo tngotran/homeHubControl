@@ -13,7 +13,7 @@ function playYT() {
 		#  grep -m1 -oP 'href="\/watch\?v=\K.{11}'
 		TMP="$(wget -q -O- "https://www.youtube.com/watch?v=$URL_CURRENT&list=$LIST" | grep -o -P '.watch\?v=.{0,11}' | cut -d '=' -f2)"
 
-		echo "TMP" = "${TMP[*]}"
+		#echo "TMP" = "${TMP[*]}"
 
 		for i in $TMP; do
 			if [[ ! "${URL_LIST[@]}" =~ "$i" ]]; then
@@ -33,6 +33,7 @@ function playYT() {
 						echo "come here download = 1, novideo = 1  "
 						echo $URL_CURRENT
 						youtube-dl -x --audio-format mp3 $URL_CURRENT
+						wait
 						[[ -z "$LIST" ]] && exit
 					else
 						youtube-dl $URL_CURRENT
@@ -43,7 +44,8 @@ function playYT() {
 					if [[ "$NO_VIDEO" == "1" ]]; then
 						echo "come here download != 1, no_video = 1"
 						mpv --no-video https://www.youtube.com/watch?v=$URL_CURRENT&list=$LIST
-						[[ -z "$LIST" ]] && exit
+						wait
+					#	[[ -z "$LIST" ]] && exit
 
 					else
 						mpv "https://www.youtube.com/watch?v=$URL_CURRENT&list=$LIST"

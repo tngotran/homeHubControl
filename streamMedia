@@ -70,8 +70,8 @@ CB="$(xsel -b)"
 for i in "${@}"; do [[ "$i" =~ "http" ]] && URL=( "$i" ); done
 for i in "${@}"; do [[ "$i" == "-d" ]] && DOWNLOAD="-d"; done
 for i in "${@}"; do [[ "$i" == "-nv" ]] && NO_VIDEO="-nv"; done
-
-[[ "$URL" =~ ("youtube.com"|"youtu.be") ]] && playYT "$URL" $DOWNLOAD $NO_VIDEO
+URL="https://www.youtube.com/watch?v=$1"
+[[ "$URL" =~ ("youtube.com"|"youtu.be") ]] && playYT "$URL" "-nv"
 #[[ ! -z "$DOWNLOAD" ]] && $TERMINAL -e "youtube-dl $URL" && exit
 #[[ ! -z "$NO_VIDEO" ]] && $TERMINAL -e "mpv --no-video $URL" || mpv "$URL"
 

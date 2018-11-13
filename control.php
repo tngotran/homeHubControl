@@ -108,7 +108,9 @@
 
 		
 		 $('#piano').click(function(){     // Chỗ off là bạn thay cái id mà bạn đặt cho button
-	   		var a = new XMLHttpRequest();
+	   		
+			console.log("piano clicked")
+			var a = new XMLHttpRequest();
 		 	a.open("GET", "music.php?q="+"piano",true);   // thay cái tatden.php thành file thực thi của bạn
 		        a.onreadystatechange=function(){
 			    if(a.readyState==4){
@@ -196,7 +198,8 @@
 		 $('#sleep').click(function(){     // Chỗ off là bạn thay cái id mà bạn đặt cho button
 			console.log("click Sleep button");
 	   		var a = new XMLHttpRequest();
-		 	a.open("GET", "music.php?q="+"sleep",true);   // thay cái tatden.php thành file thực thi của bạn
+			a.open("GET","yt.php?q="+"df",true);
+		 //	a.open("GET", "music.php?q="+"sleep",true);   // thay cái tatden.php thành file thực thi của bạn
 			console.log("after open method");
 		    a.onreadystatechange=function(){
 			    if(a.readyState==4){
@@ -257,8 +260,8 @@
 	   		}
 		       a.send();
 		 });
-		 $('#vlMute').click(function(){     // Chỗ off là bạn thay cái id mà bạn đặt cho button
-	   		var a = new XMLHttpRequest();
+		 $('#vlMute').click(function(){ 
+ 			var a = new XMLHttpRequest();
 		 	a.open("GET", "volume.php?q="+"volumeMute",true);   // thay cái tatden.php thành file thực thi của bạn
 		        a.onreadystatechange=function(){
 			    if(a.readyState==4){
@@ -271,7 +274,7 @@
 	   		}
 		       a.send();
 		 });
-		 $('#i').click(function(){     // Chỗ off là bạn thay cái id mà bạn đặt cho button
+		 $('#i').click(function(){     
 	   		var a = new XMLHttpRequest();
 		 	a.open("GET", "volume.php?q="+"volumeDown",true);   // thay cái tatden.php thành file thực thi của bạn
 		        a.onreadystatechange=function(){
@@ -291,7 +294,7 @@
 	</head>
 <body>
 
-  <!-- <button type="button" id="pl1">play List1</button><br>
+<!--   <button type="button" id="pl1">play List1</button><br>
   <button type="button" id="pl2">play List2</button><br>
   <button type="button" id="pl3">play List3</button><br>
   <button type="button" id="pop">pop music</button><br>
@@ -338,10 +341,11 @@
 	function buttonPlay(id){
 		console.log("buttonPlay " + id);
 		console.log(vidUrls[id])
-
 		var a = new XMLHttpRequest();
-		 	a.open("GET", "openFireFox.php?q="+id,true);   // thay cái tatden.php thành file thực thi của bạn
-		 	// a.open("GET", "volume.php?q="+"volumeMute",true);   // thay cái tatden.php thành file thực thi của bạn
+		 
+       		a.open("GET","yt.php?q="+vidUrls[id],true);
+	//	a.open("GET", "openFireFox.php?q="+id,true);   // thay cái tatden.php thành file thực thi của bạn
+	 	// a.open("GET", "volume.php?q="+"volumeMute",true);   // thay cái tatden.php thành file thực thi của bạn
 		        a.onreadystatechange=function(){
 			    if(a.readyState==4){
 				     if(a.status == 200){
@@ -363,7 +367,7 @@
 		var request = gapi.client.youtube.search.list({
 				q: q,
 				part: 'snippet',
-				maxResults: 10
+				maxResults: 5 
 		});
 		
 		request.execute(function(response)  {                                                                              
@@ -383,7 +387,7 @@
 							vidThumbimg = '<pre><img id="thumb" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"><button type="button" onclick="buttonPlay('+ i +')" id="'+ i +'">Play this</button></pre>';
 							
 							
-							vidUrls.push(vidUrl);
+							vidUrls[i] = vidUrl;
 							$('#results').append('<pre>' + vidTitle + vidThumbimg + '</pre>');
 							// console.log(typeof $('#vidUrls'))
 						}
@@ -414,6 +418,8 @@
     putenv("PULSE_SERVER=$newld");        // set new value 
     putenv("PULSE_SERVER=/run/user/1000/pulse/native");        // set new value 
     echo exec('sudo amixer set PCM on 2>&1') . " \n";	
+
+    //echo exec('chromium-browser 2>&1') 
     //  echo exec('sudo amixer -D pulse sset Master 50% 2>&1');
     // echo date("l");
     // putenv("PULSE_SERVER=$saved");        // restore old value

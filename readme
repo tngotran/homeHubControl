@@ -29,3 +29,6 @@ DEBUGGING
 if there is any error related to LC_ALL cannot set localation. then try sudo raspi-config then go to locate setting to check if the LC_ALL was set or not. If not then open the /etc/environment and type this line LC_ALL="en_GB.utf8"  and restart the raspibi and run the mspyt again
 if there is any error related to signatur/extractor then run an update to youtube-dl "pip3 install youtube-dl -U"
 
+Credit:
+The mpv can stream and play from youtube much better than the mpsyt
+the script streamMedia get from this account 'https://github.com/i-PUSH/arch-setup-i3wm/blob/master/config/home/.bin/streamMedia.sh'

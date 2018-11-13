@@ -7,25 +7,25 @@ the local server is automatically run
 type the ip address on the Chrome/firefox
 
 click on control.php
-the playlist1,2,3 linked with the youtube channel
+ - The playlist1,2,3 linked with the youtube channel
+ - Type keywords and then search the youtube videos. Click on playthis to play that video. This script functions to play autoplay on youtube.
+ - Remember to get the youtube KEY API and substitute to the control.php line gapi.client.setApiKey
+ - in order to see the updated volume, refresh/F5 your webpagea
 
-//Control
-in order to see the updated volume, refresh/F5 your webpagea
+DEBUGGING 
+ - check ip of raspberry by command `ifconfig`
+ - ssh to your raspbery `ssh pi@192.168.1.abc`
+ 
+ how to install selenium:
+ pip install selenium
 
-debugging 
+ ERROR1: geckodriver need to be in PATH
+  1. check your system by uname -a then
+  2. downdload the geckodriver from website https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
+  3. cp geckodriver /usr/local/bin
 
-ssh to your raspbery ssh pi@192.168.1.abc
-
-error geckodriver need to be in PATH
-check your system by uname -a then
-downdload the geckodriver from website https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
-cp geckodriver /usr/local/bin
-
-OSError: [Errno 8] Exec format error:-> this error is related to your downloaded geckodrive use uname -i to chekc
+ ERROR2: OSError: [Errno 8] Exec format error:-> this error is related to your downloaded geckodrive use uname -i to chekc
 
 if there is any error related to LC_ALL cannot set localation. then try sudo raspi-config then go to locate setting to check if the LC_ALL was set or not. If not then open the /etc/environment and type this line LC_ALL="en_GB.utf8"  and restart the raspibi and run the mspyt again
-
 if there is any error related to signatur/extractor then run an update to youtube-dl "pip3 install youtube-dl -U"
 
-how to install selenium:
-pip install selenium

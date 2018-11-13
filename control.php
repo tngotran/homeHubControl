@@ -445,7 +445,6 @@
 
 	<br><br>
 	<br><br>
-	<br><br>
 	<button type="button" id="turnOffCom">Turn OFF Computer</button><br>  
 </body>
 

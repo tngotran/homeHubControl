@@ -21,8 +21,11 @@ then
 elif [ "$1" == "bath" ]
 then
    sudo mpg321 -q bath.mp3
+elif [ "$1" == "next" ]
+then
+   sudo killall -x mpv 
+   sudo pkill -x mpv 
 else 
-   
    sudo pkill -x mpg321
    sudo pkill -x mpsyt
    sudo pkill -x mpsyt

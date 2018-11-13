@@ -198,8 +198,7 @@
 		 $('#sleep').click(function(){     // Chỗ off là bạn thay cái id mà bạn đặt cho button
 			console.log("click Sleep button");
 	   		var a = new XMLHttpRequest();
-			a.open("GET","yt.php?q="+"df",true);
-		 //	a.open("GET", "music.php?q="+"sleep",true);   // thay cái tatden.php thành file thực thi của bạn
+		 	a.open("GET", "music.php?q="+"sleep",true);   // thay cái tatden.php thành file thực thi của bạn
 			console.log("after open method");
 		    a.onreadystatechange=function(){
 			    if(a.readyState==4){
@@ -301,7 +300,9 @@
   <button type="button" id="kara">karaoke song</button><br> -->
   <!-- <button type="button" id="musicOn">Music On</button><br> -->
 
-	<button type="button" id="musicOff">Music Off</button><br>
+	<button type="button" id="musicOff">Music Off</button>
+	<button type="button" id="next" onclick="nextSong()">Next Song</button><br>
+
 	<br><br>Nhac giao huong:
 	<button type="button" id="mozart">Mozart</button>
 	<button type="button" id="piano">Piano</button>
@@ -309,7 +310,7 @@
 	<button type="button" id="beethoven">Beethoven</button>
 
 	<br><br>Morning Songs:
-	<button type="button" id="wakeup">Wake Up</button>
+	<button type="button" id="wakeup">Morning</button>
 	<button type="button" id="sleep">Sleep</button> 
 	<button type="button" id="bath">bath</button>
 	<br><br> Volume Control:
@@ -320,9 +321,9 @@
 
 
 	<div id="buttons">
-	<label> <input id="query" value="" type="text"/><button id="search-button"    onclick="keyWordsearch()">Search Youtube</button></label>    
+	<label> <input id="query" value="" type="text"/><button id="search-button" onclick="keyWordsearch()">Search Youtube</button></label>
 	<div id="container">
-	<h1>Search Results</h1>
+	<h1>   Search Results</h1>
 	<ul id="results"></ul>
 	</div>
 
@@ -341,12 +342,11 @@
 
 	function buttonPlay(id){
 		console.log("buttonPlay " + id);
-		console.log(vidUrls[id])
+		console.log(vidUrls[id]);
 		var a = new XMLHttpRequest();
 		 
        		a.open("GET","yt.php?q="+vidUrls[id],true);
 		// a.open("GET", "openFireFox.php?q="+id,true);   // thay cái tatden.php thành file thực thi của bạn
-	 	// a.open("GET", "volume.php?q="+"volumeMute",true);   // thay cái tatden.php thành file thực thi của bạn
 		        a.onreadystatechange=function(){
 			    if(a.readyState==4){
 				     if(a.status == 200){
@@ -359,6 +359,24 @@
 	    		    }
 	   		}
 		       a.send();
+	}
+
+	function nextSong(){
+		console.log("nextSong clicked");
+		var a = new XMLHttpRequest();
+		a.open("GET", "music.php?q="+"next",true);  
+	        a.onreadystatechange=function(){
+		    if(a.readyState==4){
+			     if(a.status == 200){
+				console.log("status == 200");
+			     }
+			     else{
+				 console.log("Error")
+			        alert("Error - I don't know but there is an error 404 maybe :)")
+			     }
+	   	    }
+	 	}
+	        a.send();
 	}
 
 
@@ -389,7 +407,7 @@
 							vidUrls[i] = vidUrl;
 							//$('#results').append('<pre>' + vidTitle + vidThumbimg + '</pre>');
 							
-  $('#results').append('<pre><iframe width="560" height="315" src="https://www.youtube.com/embed/'+vidUrl+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button type="button" onclick="buttonPlay('+ i +')" id="'+ i +'">Play this</button></pre>')
+  $('#results').append('<pre><iframe width="336" height="189" src="https://www.youtube.com/embed/'+vidUrl+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button type="button" onclick="buttonPlay('+ i +')" id="'+ i +'">Play this</button><button type="button" onclick="nextSong()">Next Song</button></pre>')
 						}
 						i = i + 1
 				})

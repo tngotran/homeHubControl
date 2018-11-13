@@ -318,8 +318,9 @@
 	<button type="button" id="vlMute">Mute</button>
 	<br><br>
 
+
 	<div id="buttons">
-	<label> <input id="query" value="baby shark live" type="text"/><button id="search-button"    onclick="keyWordsearch()">Search</button></label>    
+	<label> <input id="query" value="" type="text"/><button id="search-button"    onclick="keyWordsearch()">Search Youtube</button></label>    
 	<div id="container">
 	<h1>Search Results</h1>
 	<ul id="results"></ul>
@@ -344,7 +345,7 @@
 		var a = new XMLHttpRequest();
 		 
        		a.open("GET","yt.php?q="+vidUrls[id],true);
-	//	a.open("GET", "openFireFox.php?q="+id,true);   // thay cái tatden.php thành file thực thi của bạn
+		// a.open("GET", "openFireFox.php?q="+id,true);   // thay cái tatden.php thành file thực thi của bạn
 	 	// a.open("GET", "volume.php?q="+"volumeMute",true);   // thay cái tatden.php thành file thực thi của bạn
 		        a.onreadystatechange=function(){
 			    if(a.readyState==4){
@@ -367,7 +368,7 @@
 		var request = gapi.client.youtube.search.list({
 				q: q,
 				part: 'snippet',
-				maxResults: 5 
+				maxResults: 4  
 		});
 		
 		request.execute(function(response)  {                                                                              
@@ -385,11 +386,10 @@
 							vidThumburl =  item.snippet.thumbnails.default.url;
 
 							vidThumbimg = '<pre><img id="thumb" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"><button type="button" onclick="buttonPlay('+ i +')" id="'+ i +'">Play this</button></pre>';
-							
-							
 							vidUrls[i] = vidUrl;
-							$('#results').append('<pre>' + vidTitle + vidThumbimg + '</pre>');
-							// console.log(typeof $('#vidUrls'))
+							//$('#results').append('<pre>' + vidTitle + vidThumbimg + '</pre>');
+							
+  $('#results').append('<pre><iframe width="560" height="315" src="https://www.youtube.com/embed/'+vidUrl+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button type="button" onclick="buttonPlay('+ i +')" id="'+ i +'">Play this</button></pre>')
 						}
 						i = i + 1
 				})

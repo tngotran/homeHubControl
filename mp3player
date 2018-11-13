@@ -22,24 +22,19 @@ elif [ "$1" == "bath" ]
 then
    sudo mpg321 -q bath.mp3
 else 
+   
    sudo pkill -x mpg321
-   sudo pkill -x mpv
-   sudo pkill -x vlc
-   sudo pkill -x mpsyt
-   sudo pkill -x mpsyt
-   sudo killall -x mpsyt
-   sudo killall -x mpsyt
-   sudo killall -x mpsyt
-   sudo killall -x mpsyt
    sudo pkill -x mpsyt
    sudo pkill -x mpsyt
    sudo pkill -x mpv
-sudo pkill -x mpv
-sudo pkill -x mpv
-sudo killall -x mpv
-sudo killall -x mpv
+   sudo pkill -x mpv
+   sudo pkill -x mpv
+   sudo killall -x mpv
+   sudo killall -x mpv
    sudo killall -x mpv
    [[ $(pgrep "mpv") ]] && sudo pkill "mpv"
-   [[ $(pgrep "streamMedia" | wc -l) -gt 2 ]] && sudo  pkill "streamMedia"
+   sudo kill $(ps aux | grep './streamMedia' | awk '{print $2}')
+   sudo kill $(ps aux | grep './streamMedia' | awk '{print $2}')
+
 fi
 

@@ -20,6 +20,9 @@ then
 elif [ "$1" == "pl3" ]
 then
    sudo mpsyt pl https://www.youtube.com/watch?v=OkNaLEH4AHk\&list=PLFabbNcpW7rE1KgFSYkkqH1jRONpJrakr, shuffle, 1-
+elif [ "$1" == "df" ]
+then
+   sudo mpsyt playurl https://www.youtube.com/watch?v=d9IxdwEFk1vc
 else
    sudo pkill -x mpg321
    sudo pkill -x mpv

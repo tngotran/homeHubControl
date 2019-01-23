@@ -1,4 +1,4 @@
-the directory is .var/wwww/html
+the directory is /var/wwww/html
 web run with apache
 
 the main control board is the file the control.php
@@ -10,25 +10,55 @@ click on control.php
  - The playlist1,2,3 linked with the youtube channel
  - Type keywords and then search the youtube videos. Click on playthis to play that video. This script functions to play autoplay on youtube.
  - Remember to get the youtube KEY API and substitute to the control.php line gapi.client.setApiKey
- - in order to see the updated volume, refresh/F5 your webpagea
+ - in order to see the updated volume, refresh/F5 your webpage
 
+
+========================================================================================================
 DEBUGGING 
- - check ip of raspberry by command `ifconfig`
- - ssh to your raspbery `ssh pi@192.168.1.abc`
+	 - check ip of raspberry by command `ifconfig`
+	 - ssh to your raspbery `ssh pi@192.168.1.abc`
  
- how to install selenium:
- pip install selenium
+	 - how to install selenium:
+	 - pip install selenium
 
- ERROR1: geckodriver need to be in PATH
-  1. check your system by uname -a then
-  2. downdload the geckodriver from website https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
-  3. cp geckodriver /usr/local/bin
+	 - ERROR1: geckodriver need to be in PATH
+		  1. check your system by uname -a then
+		  2. downdload the geckodriver from website https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
+		  3. cp geckodriver /usr/local/bin
 
- ERROR2: OSError: [Errno 8] Exec format error:-> this error is related to your downloaded geckodrive use uname -i to chekc
+	 - ERROR2: OSError: [Errno 8] Exec format error:-> this error is related to your downloaded geckodrive use uname -i to chekc
+	 - ERROR3: open random youtube videos. When checking with terminal ./stream "ANY_YOUTUBE_LINK_ID", seeing error related to signature/extractor error, requiring update. Reason: we have to update youtube-dl sometimes because youtube change their request youtube method. Then update to youtube-dl by try first  "pip3 install youtube-dl -U". If faile, try the commands on the original website. Follow this link:
 
-if there is any error related to LC_ALL cannot set localation. then try sudo raspi-config then go to locate setting to check if the LC_ALL was set or not. If not then open the /etc/environment and type this line LC_ALL="en_GB.utf8"  and restart the raspibi and run the mspyt again
-if there is any error related to signatur/extractor then run an update to youtube-dl "pip3 install youtube-dl -U"
 
-Credit:
+https://github.com/rg3/youtube-dl/blob/master/README.md#how-do-i-update-youtube-dl
+specifically, looking for the commands below also written in the website
+
+""""""""""""""""""""""
+sudo apt-get remove -y youtube-dl
+Afterwards, simply follow our manual installation instructions:
+
+sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
+sudo chmod a+x /usr/local/bin/youtube-dl
+hash -r
+youtube-dl --version ->>compare with the lastest version on the website
+
+""""""""""""""""""""""
+
+
+
+
+	 - ERROR4: If there is any error related to LC_ALL cannot set localation. then try sudo raspi-config then go to locate setting to check if the LC_ALL was set or not. If not then open the /etc/environment and type this line LC_ALL="en_GB.utf8"  and restart the raspibi and run the mspyt again
+
+
+==========================================================================================================
+
+TIPs:
+	1. open the console F12 in chrome to see the log -> to check if the search function returns correct youtube links
+	2. ./stream "YOUTUBE_LINK_ID" to test the stream bash command. Most of time error happen here. 
+	3. open terminal -> htop to see the actual playing link
+==========================================================================================================
+
+
+CREDIT:
 The mpv can stream and play from youtube much better than the mpsyt
 the script streamMedia get from this account 'https://github.com/i-PUSH/arch-setup-i3wm/blob/master/config/home/.bin/streamMedia.sh'

@@ -1,11 +1,15 @@
 #!/bin/bash
 function playYT() {
+	echo "come here 1.5"
 	URL_LIST=()
 	URL_PLAYED=()
-	URL_CURRENT="$(youtube-dl --get-id --no-playlist "$1")"
+#	URL_CURRENT="$(youtube-dl --get-id --no-playlist "$1")#this is get the id if given an full URL link
+	URL_CURRENT=$1
+#	URL_CURRENT="koJlIGDImiU" # for testing
+	echo "URL current" + $URL_CURRENT
 	for i in "${@}"; do [[ "$i" == "-d" ]] && DOWNLOAD="1"; done
 	for i in "${@}"; do [[ "$i" == "-nv" ]] && NO_VIDEO="1"; done
-
+	echo "come here2"
 	[[ "$1" =~ "list=" ]] && LIST="$(echo "$1" | awk -v FS="(list=|&index)" '{print $2}')"
 #	while true; do
 
@@ -70,8 +74,16 @@ CB="$(xsel -b)"
 for i in "${@}"; do [[ "$i" =~ "http" ]] && URL=( "$i" ); done
 for i in "${@}"; do [[ "$i" == "-d" ]] && DOWNLOAD="-d"; done
 for i in "${@}"; do [[ "$i" == "-nv" ]] && NO_VIDEO="-nv"; done
-URL="https://www.youtube.com/watch?v=$1"
-[[ "$URL" =~ ("youtube.com"|"youtu.be") ]] && playYT "$URL" "-nv"
+#URL="https://www.youtube.com/watch?v=$1"
+#URL="https://www.youtube.com/watch?v=DfG6VKnjrVw" #URL2
+#URL="koJlIGDImiU" #for testing 
+URL=$1
+
+echo "come here1"
+playYT $URL "-nv"
+
+#[[ "$URL" =~ ("youtube.com"|"youtu.be") ]] && playYT $URL "-nv" #this line get the whole youtube link URL2 above
+
 #[[ ! -z "$DOWNLOAD" ]] && $TERMINAL -e "youtube-dl $URL" && exit
 #[[ ! -z "$NO_VIDEO" ]] && $TERMINAL -e "mpv --no-video $URL" || mpv "$URL"
 

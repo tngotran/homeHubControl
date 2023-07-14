@@ -1,5 +1,15 @@
+Enable wifi/ethernet
+Install apache
+Allow ssh (either console or via command )
+
+Install php
+
+Delete the default index.html file and copy all file from the repository and paste to  /var/wwww/html or folder of apache2
+
 the directory is /var/wwww/html
 web run with apache
+
+Find the ip of the raspebery and type it to any web browswer. Click on the file control.php
 
 the main control board is the file the control.php
 use ifconfig to get the ipaddress of the raspebry

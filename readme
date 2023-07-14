@@ -1,5 +1,5 @@
 original tutorial link http://arduino.vn/tutorial/1396-toi-da-tu-lam-robot-voi-raspberry-pi-va-arduino-nhu-nao-phan-2-dieu-khien-den-led-tu
-
+password of pi is 1
 -----set up raspbery-------
 Enable wifi/ethernet
 Allow ssh (either console or via command )

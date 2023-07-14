@@ -1,15 +1,29 @@
+original tutorial link http://arduino.vn/tutorial/1396-toi-da-tu-lam-robot-voi-raspberry-pi-va-arduino-nhu-nao-phan-2-dieu-khien-den-led-tu
+
+-----set up raspbery-------
 Enable wifi/ethernet
-Install apache
 Allow ssh (either console or via command )
 
-Install php
+------ install environment----------
+1. Install apache2 -> type the ip of raspbery on a web broswer to see if apache2 server run or not
+2. Install php (tested and work for version 7.4)
 
-Delete the default index.html file and copy all file from the repository and paste to  /var/wwww/html or folder of apache2
 
-the directory is /var/wwww/html
-web run with apache
+3. go to directory /var/wwww/html
+Delete the default index.html file and copy all files from the repository and paste to /var/wwww/html or folder of apache2
 
-Find the ip of the raspebery and type it to any web browswer. Click on the file control.php
+4. go to /var/www/html , open terminal, type sudo chmod 777 -R .
+check the permission again on termian
+ls -l 
+all files should be now rwxrwxrwx
+
+5. type in terminal: sudo visudo
+add this line to the end of the file
+www-data ALL=(ALL) NOPASSWD: ALL
+then reboot
+
+-----------check the system-----------------
+Find the ip of the raspebery and type it to any web browswer (either phone or computer). Click on the file control.php
 
 the main control board is the file the control.php
 use ifconfig to get the ipaddress of the raspebry

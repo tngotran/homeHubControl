@@ -37,7 +37,15 @@ click on control.php
  - Remember to get the youtube KEY API and substitute to the control.php line gapi.client.setApiKey
  - in order to see the updated volume, refresh/F5 your webpage
  - to copy the music from master to pi rsync -ah --progress /home/tony/Downloads/music.mp3 pi@192.168.0.31:/var/www/html/
-- to 
+- cut mp4 into smaller file
+ffmpeg -i bird.mp4 -ss 00:00:20 -c copy -t 1:00:00 bird_out.mp4
+00:00:20 is starting time (20 sec)
+1:00:00 is duration of the output
+-  Convert mp4 to mp3
+ffmpeg -i bird_out.mp4 -vn -acodec libmp3lame -ac 2 -ab 160k -ar 48000 bird.mp3
+
+
+
 
 
 ========================================================================================================

@@ -1,19 +1,19 @@
 original tutorial link http://arduino.vn/tutorial/1396-toi-da-tu-lam-robot-voi-raspberry-pi-va-arduino-nhu-nao-phan-2-dieu-khien-den-led-tu
 password of pi is 1
+
 -----set up raspbery-------
 Enable wifi/ethernet
-Allow ssh (either console or via command )
+Allow ssh (either console or via command)
 
 ------ install environment----------
 1. Install apache2 -> type the ip of raspbery on a web broswer to see if apache2 server run or not
-2. Install php (tested and work for version 7.4)
-
-
+2. Install php (tested and work for version 7.4) -> type php -v in the terminal to see if php has been installed or not
+   Install mpg321 via sudo apt	
 3. go to directory /var/wwww/html
 Delete the default index.html file and copy all files from the repository and paste to /var/wwww/html or folder of apache2
 
 4. go to /var/www/html , open terminal, type sudo chmod 777 -R .
-check the permission again on termian
+check the permission again on terminal
 ls -l 
 all files should be now rwxrwxrwx
 
@@ -24,6 +24,7 @@ then reboot
 
 -----------check the system-----------------
 Find the ip of the raspebery and type it to any web browswer (either phone or computer). Click on the file control.php
+You should see volume available
 
 the main control board is the file the control.php
 use ifconfig to get the ipaddress of the raspebry
@@ -35,6 +36,8 @@ click on control.php
  - Type keywords and then search the youtube videos. Click on playthis to play that video. This script functions to play autoplay on youtube.
  - Remember to get the youtube KEY API and substitute to the control.php line gapi.client.setApiKey
  - in order to see the updated volume, refresh/F5 your webpage
+ - to copy the music from master to pi rsync -ah --progress /home/tony/Downloads/music.mp3 pi@192.168.0.31:/var/www/html/
+- to 
 
 
 ========================================================================================================
